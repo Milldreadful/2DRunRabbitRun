@@ -9,8 +9,18 @@ public class PlayerMovement : MonoBehaviour
     public float speed;
     public float jump;
 
+    public Transform groundCheck;
+    public float groundCheckRadius;
+    public LayerMask groundLayer;
+
     public GameObject ammo;
     public Transform ammoStart;
+
+
+    public bool IsGrounded()
+    {
+        return Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -26,7 +36,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void Jump(InputAction.CallbackContext context)
     {
-        if (context.performed)
+        if (context.performed && IsGrounded())
         {
             rB.AddForce(Vector2.up * jump);
         }
