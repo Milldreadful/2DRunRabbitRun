@@ -11,7 +11,7 @@ public class GroundAngleScript : MonoBehaviour
 
    private void GroundCheckMethod()
     {
-        hit2D = Physics2D.Raycast(raycastOrigin.position, -Vector2.up, 50f, groundLayer);
+        hit2D = Physics2D.Raycast(raycastOrigin.position, -Vector2.up, 500f, groundLayer);
         if(hit2D != false ) 
         {
             Vector2 temp = playerFeet.position;
@@ -20,19 +20,9 @@ public class GroundAngleScript : MonoBehaviour
         }
     }
 
-    private void GetAlignment() 
-    {
-        RaycastHit2D hit = Physics2D.Raycast(raycastOrigin.position, -transform.up, 100f, groundLayer);
-
-        Vector2 newUp = hit.normal;
-
-        transform.up = newUp;
-    }
-
     // Update is called once per frame
     void Update()
     {
         GroundCheckMethod();
-        //GetAlignment();
     }
 }
