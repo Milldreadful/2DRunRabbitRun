@@ -4,43 +4,44 @@ using UnityEngine;
 
 public class TreasureScript : MonoBehaviour
 {
-    public Transform playerParent;
-    public Transform childObject;
+    public Transform catchPosition;
+    public GameObject parentObject;
 
     public Rigidbody2D rB;
-
-    public float objectSpeed;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        transform.position = catchPosition.position;
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(Vector2.right * objectSpeed * Time.deltaTime);
-
         if (Input.GetKeyDown(KeyCode.UpArrow))
         {
-            childObject = playerParent.Find("Circle");
-            childObject.parent = null;
             rB.simulated = true;
+            //transform.Translate(Vector2.right * 5f * Time.deltaTime);
+            rB.velocity = new Vector2(6f, 10f);
+            //rB.AddForce(Vector2.up * 200f);
+
+            Transform detachChild = parentObject.transform.Find("Circle");
+            detachChild.parent = null;  
+
         }
 
-       /* if(childObject.parent == null)
-        {
-            transform.Translate(Vector2.right * objectSpeed * Time.deltaTime);
-        }*/
+        
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Hands"))
+        if (collision.CompareTag("Hands") && rB.velocity.y < -0.1f)
         {
-            childObject.parent = playerParent;
+            rB.simulated = false;
+            transform.position = catchPosition.position;
             print("Enter");
+            gameObject.transform.parent = parentObject.transform;
         }
     }
 
