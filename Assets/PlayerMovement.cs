@@ -15,6 +15,7 @@ public class PlayerMovement : MonoBehaviour
     public LayerMask groundLayer;
 
     public float fallMultiplier;
+    public Animator playerAnim;
 
 
     [Header("Shoot")]
@@ -44,13 +45,20 @@ public class PlayerMovement : MonoBehaviour
         if (context.performed && IsGrounded())
         {
             //rB.AddForce(Vector2.up * jumpForce);
+            playerAnim.SetTrigger("Jump");
             rB.velocity = new Vector2(rB.velocity.x, jumpForce);
         }
 
-        if (context.canceled && rB.velocity.y > 0)
+        /*if (context.canceled && rB.velocity.y > 0f)
+        {
+            rB.velocity = new Vector2(rB.velocity.x, rB.velocity.y * 0.1f);
+        }*/
+
+      /*if (context.canceled && rB.velocity.y < 0)
         {
             rB.velocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
-        }
+            rB.gravityScale = 0.5f;
+        }*/
     }
 
     public void Fire(InputAction.CallbackContext context)
