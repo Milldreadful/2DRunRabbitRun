@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class AvalancheScript : MonoBehaviour
 {
-    public float speed;
     public float delay;
     public Transform target;
+
 
     // Start is called before the first frame update
     void Start()
@@ -19,5 +19,6 @@ public class AvalancheScript : MonoBehaviour
     {
         //transform.Translate(Vector2.right * speed * Time.deltaTime);
         transform.position = Vector3.Lerp(transform.position, target.position, delay * Time.deltaTime);
+        
     }
 }

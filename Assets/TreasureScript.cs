@@ -7,6 +7,11 @@ public class TreasureScript : MonoBehaviour
     public Transform catchPosition;
     public GameObject parentObject;
 
+    public float treasureX;
+    public float treasureY;
+
+    public bool isInHand = true;
+
     public Rigidbody2D rB;
 
     // Start is called before the first frame update
@@ -18,16 +23,14 @@ public class TreasureScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.UpArrow))
+        if (Input.GetKeyDown(KeyCode.UpArrow) && isInHand)
         {
             rB.simulated = true;
-            //transform.Translate(Vector2.right * 5f * Time.deltaTime);
-            rB.velocity = new Vector2(6f, 10f);
-            //rB.AddForce(Vector2.up * 200f);
+            rB.velocity = new Vector2(treasureX , treasureY);
 
-            Transform detachChild = parentObject.transform.Find("Circle");
+            Transform detachChild = parentObject.transform.Find("Treasure");
             detachChild.parent = null;  
-
+            isInHand = false;
         }
 
         
@@ -42,6 +45,7 @@ public class TreasureScript : MonoBehaviour
             transform.position = catchPosition.position;
             print("Enter");
             gameObject.transform.parent = parentObject.transform;
+            isInHand = true;
         }
     }
 

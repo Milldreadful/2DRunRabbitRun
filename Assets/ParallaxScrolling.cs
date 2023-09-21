@@ -18,7 +18,7 @@ public class ParallaxScrolling : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         float distanceX = cameraPosition.position.x * speedX;
         float distanceY = cameraPosition.position.y * speedY;
