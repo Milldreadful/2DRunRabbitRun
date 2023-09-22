@@ -17,6 +17,9 @@ public class PlayerMovement : MonoBehaviour
 
     public Animator playerAnim;
 
+    public float time = 0f;
+    public float timeDelay = 2f;
+
 
 
     
@@ -26,25 +29,34 @@ public class PlayerMovement : MonoBehaviour
         rB = GetComponent<Rigidbody2D>();
     }
 
+
     // Update is called once per frame
     void Update()
     {
-        //Endless running
-        rB.velocity = new Vector2(runningSpeed, rB.velocity.y);
+        time += 1f * Time.deltaTime;
 
-        horizontal = Input.GetAxis("Horizontal");
-
-
-        //Speeding up and Slowing down
-        if(Input.GetButton("Horizontal") && horizontal < 0)
+        if (time >= timeDelay) 
         {
-            rB.velocity = new Vector2(slowingDown, rB.velocity.y); ;
+
+            rB.velocity = new Vector2(runningSpeed, rB.velocity.y);
+
+            horizontal = Input.GetAxis("Horizontal");
+
+
+            //Speeding up and Slowing down
+            if (Input.GetButton("Horizontal") && horizontal < 0)
+            {
+                rB.velocity = new Vector2(slowingDown, rB.velocity.y); ;
+            }
+
+            else if (Input.GetButton("Horizontal") && horizontal > 0)
+            {
+                rB.velocity = new Vector2(speedingUp, rB.velocity.y);
+            }
         }
 
-        else if (Input.GetButton("Horizontal") && horizontal > 0)
-        {
-            rB.velocity = new Vector2(speedingUp, rB.velocity.y);
-        }
+
+       
 
         if (!IsGrounded() && rB.velocity.y < -0.1f)
         {
