@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: df302a34db70fe14993c38e5f8c47d29
+guid: d6a426494eca85f4794bea01792eea81
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -20,11 +20,12 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
+    flipGreenChannel: 0
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
-  ignoreMasterTextureLimit: 0
+  ignoreMipmapLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -42,7 +43,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -63,6 +64,7 @@ TextureImporter:
   textureFormatSet: 0
   ignorePngGamma: 0
   applyGammaDecoding: 0
+  swizzle: 50462976
   cookieLightType: 0
   platformSettings:
   - serializedVersion: 3
@@ -75,6 +77,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -87,6 +90,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -99,19 +103,20 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: pngwing.com_0
+      name: Avalanche_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 976.5
-        width: 1000
-        height: 976.5
+        y: 0
+        width: 1024
+        height: 2048
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -119,20 +124,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 96f7f05882a13d147842bb5b7bd88a89
-      internalID: 260503281
+      spriteID: bcf01f167f3129d46bbcc0fdead693fb
+      internalID: 1389054008
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: pngwing.com_1
+      name: Avalanche_1
       rect:
         serializedVersion: 2
-        x: 1000
-        y: 976.5
-        width: 1000
-        height: 976.5
+        x: 1024
+        y: 0
+        width: 1024
+        height: 2048
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -140,92 +145,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 907ed0c8263e3a64bbf0212c442ccc2a
-      internalID: -827703532
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: pngwing.com_2
-      rect:
-        serializedVersion: 2
-        x: 2000
-        y: 976.5
-        width: 1000
-        height: 976.5
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 403c38505be8b064aa5268b52f79a525
-      internalID: 215053065
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: pngwing.com_3
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 0.5
-        width: 1000
-        height: 976.5
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 1fe32fdfff6b6314b8991341627fef5b
-      internalID: 1689220411
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: pngwing.com_4
-      rect:
-        serializedVersion: 2
-        x: 1000
-        y: 0.5
-        width: 1000
-        height: 976.5
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 7f29d09804413cf4ebb121a5a06d6946
-      internalID: 1459914167
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: pngwing.com_5
-      rect:
-        serializedVersion: 2
-        x: 2000
-        y: 0.5
-        width: 1000
-        height: 976.5
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 5509bfdc58c528447a56ab23d9e725b9
-      internalID: 1068596890
+      spriteID: 93054ea96a35acd4d830a380e29a12ca
+      internalID: 1517480396
       vertices: []
       indices: 
       edges: []
@@ -241,15 +162,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      pngwing.com_2: 215053065
-      pngwing.com_4: 1459914167
-      pngwing.com_0: 260503281
-      pngwing.com_1: -827703532
-      pngwing.com_3: 1689220411
-      pngwing.com_5: 1068596890
-  spritePackingTag: 
+      Avalanche_0: 1389054008
+      Avalanche_1: 1517480396
+  mipmapLimitGroupName: 
   pSDRemoveMatte: 0
-  pSDShowRemoveMatteOption: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 
