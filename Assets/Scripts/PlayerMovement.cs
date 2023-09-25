@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
+    [Header("Running")]
     public Rigidbody2D rB;
     public float runningSpeed;
     public float speedingUp;
@@ -13,7 +14,11 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Jump")]
     public float jumpForce;
+    public float fallMultiplier = 2.5f;
+    public float lowJumpMultiplier = 2f;
     public LayerMask groundLayer;
+    public Transform groundCheck;
+    public float groundCheckRadius;
 
     public Animator playerAnim;
 
@@ -46,40 +51,36 @@ public class PlayerMovement : MonoBehaviour
             //Speeding up and Slowing down
             if (Input.GetButton("Horizontal") && horizontal < 0)
             {
-                rB.velocity = new Vector2(slowingDown, rB.velocity.y); ;
+                rB.velocity = new Vector2(slowingDown, rB.velocity.y);
             }
 
             else if (Input.GetButton("Horizontal") && horizontal > 0)
             {
                 rB.velocity = new Vector2(speedingUp, rB.velocity.y);
             }
+
+
+            if (Input.GetButtonDown("Jump") && IsGrounded())
+            {
+                playerAnim.SetTrigger("Jump");
+                rB.velocity = Vector2.up * jumpForce;
+            }
+
+            else if (!Input.GetButton("Jump") && rB.velocity.y < 0)
+            {
+                rB.velocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
+            }
+
+            else if(!Input.GetButton("Jump") && rB.velocity.y > 0)
+            {
+                rB.velocity += Vector2.up * Physics2D.gravity.y * (lowJumpMultiplier - 1) * Time.deltaTime;
+            }
         }
 
-
-       
-
-        if (!IsGrounded() && rB.velocity.y < -0.1f)
-        {
-            rB.gravityScale = 3f;
-        }
-
-        else
-        {
-            rB.gravityScale = 2f;
-        }
     }
     public bool IsGrounded()
     {
-        return Physics2D.Raycast(transform.position, Vector2.down, 3f, groundLayer);
-    }
-
-    public void Jump(InputAction.CallbackContext context)
-    {
-        if (context.performed && IsGrounded())
-        {
-            //rB.AddForce(Vector2.up * jumpForce);
-            playerAnim.SetTrigger("Jump");
-            rB.velocity = new Vector2(rB.velocity.x, jumpForce);
-        }
+        //return Physics2D.Raycast(transform.position, Vector2.down, 3f, groundLayer);
+        return Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
     }
 }

@@ -70,3 +70,9 @@ crashlytics-build.properties
 # Temporary auto-generated Android Assets
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
+Assets/JungleLevel/JungleSky.psd.meta
+Assets/JungleLevel/JungleSky.psd
+Assets/JungleLevel/JungleBG.psd.meta
+Assets/JungleLevel/JungleBG.psd
+Assets/JungleLevel/Sun.psd.meta
+Assets/JungleLevel/Sun.psd

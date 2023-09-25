@@ -7,7 +7,7 @@ public class AvalancheScript : MonoBehaviour
     public float delay;
     public Transform target;
 
-    public Animator rhinoAnim;
+    public AudioSource rhinoSound;
 
     // Start is called before the first frame update
     void Start()
@@ -26,5 +26,6 @@ public class AvalancheScript : MonoBehaviour
     {
         yield return new WaitForSeconds(2f);
         transform.position = Vector3.Lerp(transform.position, target.position, delay * Time.deltaTime);
+        //rhinoSound.Play();
     }
 }

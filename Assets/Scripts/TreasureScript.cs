@@ -23,7 +23,7 @@ public class TreasureScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.UpArrow) && isInHand)
+        if (Input.GetKeyDown(KeyCode.UpArrow) && isInHand || Input.GetKeyDown(KeyCode.W) && isInHand)
         {
             rB.simulated = true;
             rB.velocity = new Vector2(treasureX , treasureY);
