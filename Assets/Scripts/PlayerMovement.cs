@@ -20,10 +20,16 @@ public class PlayerMovement : MonoBehaviour
     public Transform groundCheck;
     public float groundCheckRadius;
 
+    public float coyoteTime = 0.2f;
+    public float coyoteTimeCounter;
+   
+
     public Animator playerAnim;
 
     public float time = 0f;
     public float timeDelay = 2f;
+
+    public GameManager GMScript;
 
 
 
@@ -32,17 +38,29 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         rB = GetComponent<Rigidbody2D>();
+        GMScript = GameObject.Find("GM").GetComponent<GameManager>();
     }
 
 
     // Update is called once per frame
     void Update()
     {
+        if(IsGrounded())
+        {
+            //playerAnim.SetTrigger("Grounded");
+            coyoteTimeCounter = coyoteTime;
+        }
+
+        else
+        {
+            coyoteTimeCounter -= Time.deltaTime;
+        }
+
         time += 1f * Time.deltaTime;
 
         if (time >= timeDelay) 
         {
-
+            
             rB.velocity = new Vector2(runningSpeed, rB.velocity.y);
 
             horizontal = Input.GetAxis("Horizontal");
@@ -59,28 +77,36 @@ public class PlayerMovement : MonoBehaviour
                 rB.velocity = new Vector2(speedingUp, rB.velocity.y);
             }
 
-
-            if (Input.GetButtonDown("Jump") && IsGrounded())
+            //Jumping
+            if (Input.GetButtonDown("Jump") && coyoteTimeCounter > 0f)
             {
                 playerAnim.SetTrigger("Jump");
                 rB.velocity = Vector2.up * jumpForce;
             }
 
-            else if (!Input.GetButton("Jump") && rB.velocity.y < 0)
+            else if (!Input.GetButton("Jump") && rB.velocity.y > 0)
+            {
+                rB.velocity += Vector2.up * Physics2D.gravity.y * (lowJumpMultiplier - 1) * Time.deltaTime;
+                coyoteTimeCounter = 0f;
+            }
+
+            else if (rB.velocity.y < 0)
             {
                 rB.velocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
             }
-
-            else if(!Input.GetButton("Jump") && rB.velocity.y > 0)
-            {
-                rB.velocity += Vector2.up * Physics2D.gravity.y * (lowJumpMultiplier - 1) * Time.deltaTime;
-            }
         }
-
     }
     public bool IsGrounded()
     {
         //return Physics2D.Raycast(transform.position, Vector2.down, 3f, groundLayer);
         return Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Snake") || collision.gameObject.CompareTag("Hole"))
+        {
+            GMScript.LoadLevel(0);
+        }
     }
 }

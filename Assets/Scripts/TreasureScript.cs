@@ -9,41 +9,49 @@ public class TreasureScript : MonoBehaviour
 
     public float treasureX;
     public float treasureY;
+    public float lowJumpMultiplier = 3f;
 
     public bool isInHand = true;
 
-    public Rigidbody2D rB;
+    public Rigidbody2D treasureRB;
 
     // Start is called before the first frame update
     void Start()
     {
         transform.position = catchPosition.position;
+        treasureRB = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.UpArrow) && isInHand || Input.GetKeyDown(KeyCode.W) && isInHand)
+        if (Input.GetButtonDown("Jump") && isInHand)
         {
-            rB.simulated = true;
-            rB.velocity = new Vector2(treasureX , treasureY);
+            treasureRB.simulated = true;
+            treasureRB.velocity = new Vector2(treasureX, treasureY);
 
-            Transform detachChild = parentObject.transform.Find("Treasure");
-            detachChild.parent = null;  
+
+            Transform treasure = parentObject.transform.Find("Treasure");
+            treasure.parent = null;
             isInHand = false;
+
         }
 
-        
+        else if (!Input.GetButton("Jump") && treasureRB.velocity.y > 0)
+        {
+            treasureRB.velocity += Vector2.up * Physics2D.gravity.y * (lowJumpMultiplier - 1) * Time.deltaTime;
+        }
+
+
 
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Hands") && rB.velocity.y < -0.1f)
+        if (collision.CompareTag("Hands") && treasureRB.velocity.y < -0.1f)
         {
-            rB.simulated = false;
+            treasureRB.simulated = false;
             transform.position = catchPosition.position;
-            print("Enter");
             gameObject.transform.parent = parentObject.transform;
             isInHand = true;
         }

@@ -4,9 +4,10 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Hazard
   - Ground
   - Hands
+  - Snake
+  - Hole
   layers:
   - Default
   - TransparentFX
