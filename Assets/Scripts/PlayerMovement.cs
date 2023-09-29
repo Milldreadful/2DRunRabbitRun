@@ -32,6 +32,7 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 checkpointPosition;
     public GameObject treasure;
     public Transform catchPosition;
+    public AudioSource jumpSFX;
 
     public GameManager GMScript;
 
@@ -67,7 +68,8 @@ public class PlayerMovement : MonoBehaviour
         {
             
             rB.velocity = new Vector2(runningSpeed, rB.velocity.y);
-
+            
+       
             horizontal = Input.GetAxis("Horizontal");
 
 
@@ -87,6 +89,9 @@ public class PlayerMovement : MonoBehaviour
             {
                 playerAnim.SetTrigger("Jump");
                 rB.velocity = Vector2.up * jumpForce;
+                jumpSFX = GetComponent<AudioSource>();
+                jumpSFX.pitch = Random.Range(0.8f, 1.7f);
+                jumpSFX.Play();
             }
 
             else if (!Input.GetButton("Jump") && rB.velocity.y > 0)
