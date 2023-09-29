@@ -8,6 +8,8 @@ TagManager:
   - Hands
   - Snake
   - Hole
+  - Checkpoint
+  - Obstacle
   layers:
   - Default
   - TransparentFX
@@ -16,7 +18,7 @@ TagManager:
   - Water
   - UI
   - Ground
-  - Grabable
+  - 
   - 
   - 
   - 

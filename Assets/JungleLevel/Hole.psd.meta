@@ -47,9 +47,9 @@ TextureImporter:
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 9
-  spritePivot: {x: 0.24569038, y: 0.48786294}
+  spritePivot: {x: 0.25422424, y: 0.48786286}
   spritePixelsToUnits: 100
-  spriteBorder: {x: 1510, y: 2121, z: 6510, w: 2241}
+  spriteBorder: {x: 1339, y: 2539, z: 6852, w: 2300}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
@@ -108,12 +108,33 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Hole_0
+      rect:
+        serializedVersion: 2
+        x: 1431
+        y: 2608
+        width: 1517
+        height: 629
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3a6f98a374caf2b4ca915c698c2407f3
+      internalID: -2058477580
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline:
-    - - {x: -3729, y: -708.5}
+    - - {x: -3729, y: -247.5}
       - {x: -3729, y: 537.5}
-      - {x: -1357, y: 537.5}
-      - {x: -1357, y: -708.5}
+      - {x: -1852, y: 520.5}
+      - {x: -1852, y: -264.5}
     physicsShape: []
     bones: []
     spriteID: 5e97eb03825dee720800000000000000
@@ -123,7 +144,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Hole_0: -2058477580
   mipmapLimitGroupName: 
   pSDRemoveMatte: 1
   userData: 

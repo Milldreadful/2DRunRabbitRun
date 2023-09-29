@@ -32,7 +32,7 @@ public class TreasureScript : MonoBehaviour
 
 
             Transform treasure = parentObject.transform.Find("Treasure");
-            treasure.parent = null;
+            //treasure.parent = null;
             isInHand = false;
 
         }

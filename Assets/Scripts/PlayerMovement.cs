@@ -29,6 +29,10 @@ public class PlayerMovement : MonoBehaviour
     public float time = 0f;
     public float timeDelay = 2f;
 
+    private Vector2 checkpointPosition;
+    public GameObject treasure;
+    public Transform catchPosition;
+
     public GameManager GMScript;
 
 
@@ -39,6 +43,7 @@ public class PlayerMovement : MonoBehaviour
     {
         rB = GetComponent<Rigidbody2D>();
         GMScript = GameObject.Find("GM").GetComponent<GameManager>();
+        checkpointPosition = transform.position;
     }
 
 
@@ -67,12 +72,12 @@ public class PlayerMovement : MonoBehaviour
 
 
             //Speeding up and Slowing down
-            if (Input.GetButton("Horizontal") && horizontal < 0)
+            if (Input.GetButton("Horizontal") && horizontal < 0 && IsGrounded())
             {
                 rB.velocity = new Vector2(slowingDown, rB.velocity.y);
             }
 
-            else if (Input.GetButton("Horizontal") && horizontal > 0)
+            else if (Input.GetButton("Horizontal") && horizontal > 0 && IsGrounded())
             {
                 rB.velocity = new Vector2(speedingUp, rB.velocity.y);
             }
@@ -106,7 +111,13 @@ public class PlayerMovement : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Snake") || collision.gameObject.CompareTag("Hole"))
         {
-            GMScript.LoadLevel(0);
+            transform.position = checkpointPosition;
+            treasure.transform.position = catchPosition.position;
+        }
+
+        else if (collision.gameObject.CompareTag("Checkpoint"))
+        {
+            checkpointPosition = transform.position;
         }
     }
 }
