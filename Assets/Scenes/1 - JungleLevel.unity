@@ -7451,6 +7451,7 @@ GameObject:
   - component: {fileID: 981532297}
   - component: {fileID: 981532296}
   - component: {fileID: 981532295}
+  - component: {fileID: 981532298}
   m_Layer: 0
   m_Name: Checkpoint (1)
   m_TagString: Checkpoint
@@ -7494,7 +7495,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 20.48, y: 10.24}
+    oldSize: {x: 16, y: 16}
     newSize: {x: 20.48, y: 10.24}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -7544,7 +7545,7 @@ SpriteRenderer:
   m_SortingLayerID: 2118107709
   m_SortingLayer: 3
   m_SortingOrder: 5
-  m_Sprite: {fileID: 21300000, guid: 55d89511f53c6c547b388f737866fbe0, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5242264b99ec2c2468adabff77358620, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -7564,12 +7565,33 @@ Transform:
   m_GameObject: {fileID: 981532294}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 377.69998, y: 0.5999994, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 371.59, y: 3.57, z: 0}
+  m_LocalScale: {x: 1.4152, y: 1.4789, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1054238222}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &981532298
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 981532294}
+  m_Enabled: 0
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: bb1fd7cedfe37544d8431ae969c9c665, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &996086284
 GameObject:
   m_ObjectHideFlags: 0
@@ -8630,6 +8652,7 @@ GameObject:
   - component: {fileID: 1054238222}
   - component: {fileID: 1054238221}
   - component: {fileID: 1054238220}
+  - component: {fileID: 1054238223}
   m_Layer: 0
   m_Name: Checkpoint
   m_TagString: Checkpoint
@@ -8673,7 +8696,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 20.48, y: 10.24}
+    oldSize: {x: 16, y: 16}
     newSize: {x: 20.48, y: 10.24}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -8723,7 +8746,7 @@ SpriteRenderer:
   m_SortingLayerID: 2118107709
   m_SortingLayer: 3
   m_SortingOrder: 5
-  m_Sprite: {fileID: 21300000, guid: 55d89511f53c6c547b388f737866fbe0, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5242264b99ec2c2468adabff77358620, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -8743,13 +8766,34 @@ Transform:
   m_GameObject: {fileID: 1054238219}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 374.6, y: -8.4, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 371.93, y: 1.06, z: 0}
+  m_LocalScale: {x: 1.828, y: 1.6784, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 981532297}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &1054238223
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1054238219}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: bb1fd7cedfe37544d8431ae969c9c665, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1066950183
 GameObject:
   m_ObjectHideFlags: 0
