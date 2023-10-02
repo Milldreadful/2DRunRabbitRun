@@ -31,16 +31,9 @@ public class AvalancheScript : MonoBehaviour
         }
     }
 
-    public IEnumerator IdleWait()
-    {
-        yield return new WaitForSeconds(2f);
-        //transform.position = Vector3.Lerp(transform.position, target.position, delay * Time.deltaTime);
-        //rhinoSound.Play();
-    }
-
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.CompareTag("Obstacle"))
+        if (collision.gameObject.CompareTag("Obstacle"))
         {
             Destroy(collision.gameObject);
         }
@@ -54,3 +47,4 @@ public class AvalancheScript : MonoBehaviour
         }
     }
 }
+
