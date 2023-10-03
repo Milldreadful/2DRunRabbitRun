@@ -4,21 +4,19 @@ using UnityEngine;
 
 public class AvalancheScript : MonoBehaviour
 {
-    public float speed;
+    public float delay;
     public Transform target;
 
-    public AudioSource rhinoSound;
 
     public float time = 0f;
     public float timeDelay = 3f;
 
-    public Rigidbody2D rhinoRB;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        rhinoRB = GetComponent<Rigidbody2D>();
+        
     }
 
     // Update is called once per frame
@@ -27,30 +25,7 @@ public class AvalancheScript : MonoBehaviour
         time += 1f * Time.deltaTime;
         if (time >= timeDelay)
         {
-            rhinoRB.velocity = new Vector2(speed, rhinoRB.velocity.y);
-        }
-    }
-
-    public IEnumerator IdleWait()
-    {
-        yield return new WaitForSeconds(2f);
-        //transform.position = Vector3.Lerp(transform.position, target.position, delay * Time.deltaTime);
-        //rhinoSound.Play();
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if(collision.gameObject.CompareTag("Obstacle"))
-        {
-            Destroy(collision.gameObject);
-        }
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.CompareTag("Hole"))
-        {
-            collision.gameObject.GetComponent<Collider2D>().isTrigger = false;
+            transform.position = Vector3.Lerp(transform.position, target.position, delay * Time.deltaTime);
         }
     }
 }

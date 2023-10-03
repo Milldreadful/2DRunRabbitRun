@@ -12,14 +12,20 @@ public class TreasureScript : MonoBehaviour
     public float lowJumpMultiplier = 3f;
 
     public bool isInHand = true;
+    public float bounceCount;
 
     public Rigidbody2D treasureRB;
+
+    public PlayerMovement playerScript;
 
     // Start is called before the first frame update
     void Start()
     {
         transform.position = catchPosition.position;
+        bounceCount = 0;
+
         treasureRB = GetComponent<Rigidbody2D>();
+        //playerScript = GameObject.Find("Player").GetComponent<PlayerMovement>();
     }
 
     // Update is called once per frame
@@ -54,7 +60,22 @@ public class TreasureScript : MonoBehaviour
             transform.position = catchPosition.position;
             gameObject.transform.parent = parentObject.transform;
             isInHand = true;
+            bounceCount = 0;
         }
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+            bounceCount += 1;
+            treasureRB.velocity = new Vector2(treasureX, treasureY);
+
+            if (bounceCount == 2)
+            {
+                playerScript.ReSpawn();
+                bounceCount = 0;
+            }
+        }
+    }
 }

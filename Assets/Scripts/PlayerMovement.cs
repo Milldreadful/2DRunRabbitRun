@@ -22,23 +22,23 @@ public class PlayerMovement : MonoBehaviour
 
     public float coyoteTime = 0.2f;
     public float coyoteTimeCounter;
-   
 
+    [Header("Respawn")]
+    private Vector2 checkpointPosition;
+    public GameObject treasure;
+    public Transform catchPosition;
+    public bool isCoroutineRunning = false;
+
+    public AudioSource jumpSFX;
     public Animator playerAnim;
 
     public float time = 0f;
     public float timeDelay = 2f;
 
-    private Vector2 checkpointPosition;
-    public GameObject treasure;
-    public Transform catchPosition;
-    public AudioSource jumpSFX;
-
     public GameManager GMScript;
 
 
 
-    
     // Start is called before the first frame update
     void Start()
     {
@@ -51,9 +51,8 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(IsGrounded())
+        if (IsGrounded())
         {
-            //playerAnim.SetTrigger("Grounded");
             coyoteTimeCounter = coyoteTime;
         }
 
@@ -64,12 +63,12 @@ public class PlayerMovement : MonoBehaviour
 
         time += 1f * Time.deltaTime;
 
-        if (time >= timeDelay) 
+        if (time >= timeDelay)
         {
-            
+
             rB.velocity = new Vector2(runningSpeed, rB.velocity.y);
-            
-       
+
+
             horizontal = Input.GetAxis("Horizontal");
 
 
@@ -112,12 +111,21 @@ public class PlayerMovement : MonoBehaviour
         return Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
     }
 
+    public IEnumerator ReSpawn()
+    {
+        yield return new WaitForSeconds(1f);
+        isCoroutineRunning = true;
+        transform.position = checkpointPosition;
+        treasure.transform.position = catchPosition.position;
+        yield return new WaitForSeconds(1f);
+        isCoroutineRunning = false;
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Snake") || collision.gameObject.CompareTag("Hole"))
         {
-            transform.position = checkpointPosition;
-            treasure.transform.position = catchPosition.position;
+            StartCoroutine(ReSpawn());
         }
 
         else if (collision.gameObject.CompareTag("Checkpoint"))
