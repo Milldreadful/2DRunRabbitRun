@@ -25,7 +25,7 @@ public class TreasureScript : MonoBehaviour
         bounceCount = 0;
 
         treasureRB = GetComponent<Rigidbody2D>();
-        //playerScript = GameObject.Find("Player").GetComponent<PlayerMovement>();
+        playerScript = GameObject.Find("Player").GetComponent<PlayerMovement>();
     }
 
     // Update is called once per frame
@@ -73,7 +73,7 @@ public class TreasureScript : MonoBehaviour
 
             if (bounceCount == 2)
             {
-                playerScript.ReSpawn();
+                playerScript.StartCoroutine("ReSpawn");
                 bounceCount = 0;
             }
         }
