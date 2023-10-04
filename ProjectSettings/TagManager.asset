@@ -10,6 +10,7 @@ TagManager:
   - Hole
   - Checkpoint
   - Obstacle
+  - Slowdown
   layers:
   - Default
   - TransparentFX

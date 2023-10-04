@@ -12,6 +12,8 @@ public class PlayerMovement : MonoBehaviour
     public float slowingDown;
     private float horizontal;
 
+    public bool inSlowdown = false;
+
     [Header("Jump")]
     public float jumpForce;
     public float fallMultiplier = 2.5f;
@@ -24,7 +26,7 @@ public class PlayerMovement : MonoBehaviour
     public float coyoteTimeCounter;
 
     [Header("Respawn")]
-    private Vector2 checkpointPosition;
+    public Vector2 checkpointPosition;
     public GameObject treasure;
     public Transform catchPosition;
     public bool isCoroutineRunning = false;
@@ -73,18 +75,18 @@ public class PlayerMovement : MonoBehaviour
 
 
             //Speeding up and Slowing down
-            if (Input.GetButton("Horizontal") && horizontal < 0 && IsGrounded())
+            if (Input.GetButton("Horizontal") && horizontal < 0 && IsGrounded() && !inSlowdown)
             {
                 rB.velocity = new Vector2(slowingDown, rB.velocity.y);
             }
 
-            else if (Input.GetButton("Horizontal") && horizontal > 0 && IsGrounded())
+            else if (Input.GetButton("Horizontal") && horizontal > 0 && IsGrounded() && !inSlowdown)
             {
                 rB.velocity = new Vector2(speedingUp, rB.velocity.y);
             }
 
             //Jumping
-            if (Input.GetButtonDown("Jump") && coyoteTimeCounter > 0f)
+            if (Input.GetButtonDown("Jump") && coyoteTimeCounter > 0f && !inSlowdown)
             {
                 playerAnim.SetTrigger("Jump");
                 rB.velocity = Vector2.up * jumpForce;
@@ -121,16 +123,33 @@ public class PlayerMovement : MonoBehaviour
         isCoroutineRunning = false;
     }
 
+    public IEnumerator Slowdown()
+    {
+        runningSpeed = 7f;
+        yield return new WaitForSeconds(2f);
+        runningSpeed = 12f;
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Snake") || collision.gameObject.CompareTag("Hole"))
+        if (collision.gameObject.CompareTag("Hole"))
         {
             StartCoroutine(ReSpawn());
+            print("Apua");
         }
 
         else if (collision.gameObject.CompareTag("Checkpoint"))
         {
             checkpointPosition = transform.position;
+        }
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Slowdown"))
+        {
+            runningSpeed = 7f;
+            inSlowdown = true;
         }
     }
 }
