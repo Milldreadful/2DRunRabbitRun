@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEditor.SceneManagement;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -30,6 +32,9 @@ public class PlayerMovement : MonoBehaviour
     public GameObject treasure;
     public Transform catchPosition;
     public bool isCoroutineRunning = false;
+    public int sceneIndex;
+
+    public Animator fadeScreen;
 
     public AudioSource jumpSFX;
     public Animator playerAnim;
@@ -54,7 +59,7 @@ public class PlayerMovement : MonoBehaviour
         GMScript = GameObject.Find("GM").GetComponent<GameManager>();
         checkpointPosition = transform.position;
         rocketSFX = GameObject.Find("Checkpoint").GetComponent<AudioSource>();
-        
+        sceneIndex = SceneManager.GetActiveScene().buildIndex;
     }
 
     public void StepSound()
@@ -128,13 +133,17 @@ public class PlayerMovement : MonoBehaviour
     public IEnumerator ReSpawn()
     {
         checkPoint.SetTrigger("reset");
-        yield return new WaitForSeconds(1f);
+        fadeScreen.SetTrigger("FadeOut");
+        runningSpeed = 0f;
+        yield return new WaitForSeconds(2f);
         isCoroutineRunning = true;
         transform.position = new Vector2(checkpointPosition.x-2, checkpointPosition.y);
         checkPoint.SetTrigger("contact");
         treasure.transform.position = catchPosition.position;
+        fadeScreen.SetTrigger("FadeIn");
         yield return new WaitForSeconds(1f);
         isCoroutineRunning = false;
+        runningSpeed = 12f;
     }
 
     public IEnumerator Slowdown()
@@ -146,10 +155,9 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Hole"))
+        if (collision.gameObject.CompareTag("Hole") || collision.gameObject.CompareTag ("Hazard"))
         {
             StartCoroutine(ReSpawn());
-            print("Apua");
         }
 
         else if (collision.gameObject.CompareTag("Checkpoint"))
@@ -176,12 +184,28 @@ public class PlayerMovement : MonoBehaviour
             runningSpeed = 12f;
             inSlowdown = false;
         }
+
+        if (collision.gameObject.CompareTag("Goal"))
+        {
+            GMScript.LoadLevel(sceneIndex + 1);
+        }
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Dragonfly"))
         {
             collision.gameObject.GetComponent<Animator>().SetTrigger("squash");
+        }
+
+        if (collision.gameObject.CompareTag("SmallObstacle"))
+        {
+            playerAnim.SetTrigger("Fall");
+            StartCoroutine(ReSpawn());
+        }
+
+        if (collision.gameObject.CompareTag("Hazard"))
+        {
+            StartCoroutine(ReSpawn());
         }
     }
 }

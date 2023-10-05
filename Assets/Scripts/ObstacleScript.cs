@@ -4,12 +4,10 @@ using UnityEngine;
 
 public class ObstacleScript : MonoBehaviour
 {
-    public PlayerMovement playerScript;
-
     // Start is called before the first frame update
     void Start()
     {
-        playerScript = GameObject.Find("Player").GetComponent<PlayerMovement>();
+       
     }
 
     // Update is called once per frame

@@ -6,12 +6,14 @@ TagManager:
   tags:
   - Ground
   - Hands
-  - Snake
   - Hole
   - Checkpoint
   - Obstacle
   - Slowdown
   - Dragonfly
+  - SmallObstacle
+  - Goal
+  - Hazard
   layers:
   - Default
   - TransparentFX

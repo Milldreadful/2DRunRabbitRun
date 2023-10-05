@@ -7,7 +7,6 @@ using TMPro;
 public class TreasureScript : MonoBehaviour
 {
     public Transform catchPosition;
-    public GameObject parentObject;
     public AudioClip babyBounce;
     public AudioClip catchTreasure;
     public AudioSource myAudio;
@@ -44,9 +43,6 @@ public class TreasureScript : MonoBehaviour
             treasureRB.simulated = true;
             treasureRB.velocity = new Vector2(treasureX, treasureY);
 
-
-            Transform treasure = parentObject.transform.Find("Treasure");
-            //treasure.parent = null;
             isInHand = false;
         }
 
@@ -70,9 +66,13 @@ public class TreasureScript : MonoBehaviour
             myAudio.PlayOneShot(catchTreasure);
             treasureRB.simulated = false;
             transform.position = catchPosition.position;
-            gameObject.transform.parent = parentObject.transform;
             isInHand = true;
             bounceCount = 0;
+        }
+
+        if (collision.gameObject.CompareTag("Hole"))
+        {
+            playerScript.StartCoroutine("ReSpawn");
         }
     }
 
