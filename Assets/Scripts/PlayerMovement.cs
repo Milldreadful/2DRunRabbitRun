@@ -42,6 +42,12 @@ public class PlayerMovement : MonoBehaviour
     public Animator checkPoint;
     public AudioClip stepSFX;
     public AudioSource mystepAudio;
+    public AudioSource goal;
+    public AudioClip goalSFX;
+    public AudioSource fail;
+    public AudioClip failSFX;
+    public AudioSource landing;
+    public AudioClip landSFX;
 
     public float time = 0f;
     public float timeDelay = 2f;
@@ -157,6 +163,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Hole") || collision.gameObject.CompareTag ("Hazard"))
         {
+            fail.PlayOneShot(failSFX);
             StartCoroutine(ReSpawn());
         }
 
@@ -187,6 +194,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (collision.gameObject.CompareTag("Goal"))
         {
+            goal.PlayOneShot(goalSFX);
             GMScript.LoadLevel(sceneIndex + 1);
         }
     }
@@ -194,17 +202,20 @@ public class PlayerMovement : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Dragonfly"))
         {
+            landing.PlayOneShot(landSFX);
             collision.gameObject.GetComponent<Animator>().SetTrigger("squash");
         }
 
         if (collision.gameObject.CompareTag("SmallObstacle"))
         {
+            fail.PlayOneShot(failSFX);
             playerAnim.SetTrigger("Fall");
             StartCoroutine(ReSpawn());
         }
 
         if (collision.gameObject.CompareTag("Hazard"))
         {
+            fail.PlayOneShot(failSFX);
             StartCoroutine(ReSpawn());
         }
     }
