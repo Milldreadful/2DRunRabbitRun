@@ -68,7 +68,7 @@ public class PlayerMovement : MonoBehaviour
         if (time >= timeDelay)
         {
 
-            rB.velocity = new Vector2(runningSpeed, rB.velocity.y);
+            //rB.velocity = new Vector2(runningSpeed, rB.velocity.y);
 
 
             horizontal = Input.GetAxis("Horizontal");
@@ -142,14 +142,20 @@ public class PlayerMovement : MonoBehaviour
         {
             checkpointPosition = transform.position;
         }
-    }
 
-    private void OnTriggerStay2D(Collider2D collision)
-    {
-        if (collision.gameObject.CompareTag("Slowdown"))
+        else if (collision.gameObject.CompareTag("Slowdown"))
         {
             runningSpeed = 7f;
             inSlowdown = true;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Slowdown"))
+        {
+            runningSpeed = 12f;
+            inSlowdown = false;
         }
     }
 }

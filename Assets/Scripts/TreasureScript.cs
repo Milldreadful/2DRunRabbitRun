@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using TMPro;
 
 public class TreasureScript : MonoBehaviour
 {
@@ -13,9 +15,10 @@ public class TreasureScript : MonoBehaviour
 
     public bool isInHand = true;
     public float bounceCount;
+    public float onAirTimer;
+    public TextMeshProUGUI onAirText;
 
     public Rigidbody2D treasureRB;
-
     public PlayerMovement playerScript;
 
     // Start is called before the first frame update
@@ -23,6 +26,7 @@ public class TreasureScript : MonoBehaviour
     {
         transform.position = catchPosition.position;
         bounceCount = 0;
+        onAirTimer = 0;
 
         treasureRB = GetComponent<Rigidbody2D>();
         playerScript = GameObject.Find("Player").GetComponent<PlayerMovement>();
@@ -40,7 +44,6 @@ public class TreasureScript : MonoBehaviour
             Transform treasure = parentObject.transform.Find("Treasure");
             //treasure.parent = null;
             isInHand = false;
-
         }
 
         else if (!Input.GetButton("Jump") && treasureRB.velocity.y > 0)
@@ -48,7 +51,11 @@ public class TreasureScript : MonoBehaviour
             treasureRB.velocity += Vector2.up * Physics2D.gravity.y * (lowJumpMultiplier - 1) * Time.deltaTime;
         }
 
-
+        if (!isInHand)
+        {
+            onAirTimer += Time.deltaTime;
+            onAirText.text = onAirText.ToString();
+        }
 
     }
 
