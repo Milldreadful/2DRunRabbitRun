@@ -58,7 +58,7 @@ public class TreasureScript : MonoBehaviour
         if (!isInHand)
         {
             onAirTimer += Time.deltaTime;
-            onAirText.text = onAirText.ToString();
+            onAirText.GetComponent<TextMeshProUGUI>().text = onAirTimer.ToString("f1");
         }
 
     }

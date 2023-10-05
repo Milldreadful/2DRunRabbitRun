@@ -8,7 +8,7 @@ public class AvalancheScript : MonoBehaviour
     public float avalancheSpeed;
     public Transform target;
     public Transform checkpointPosition;
-    public Vector2 avalancheTarget = new Vector2(1521.5f, -325.5f);
+    public Vector2 avalancheTarget = new Vector2(1581.5f, -344f);
 
 
     public float time = 0f;
