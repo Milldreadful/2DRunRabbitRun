@@ -25,12 +25,8 @@ public class AvalancheScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        time += 1f * Time.deltaTime;
-        if (time >= timeDelay)
-        {
-            //transform.position = Vector3.Lerp(transform.position, target.position, delay * Time.deltaTime);
-            transform.position = Vector2.MoveTowards(transform.position, avalancheTarget, Time.deltaTime * avalancheSpeed);
-        }
+        transform.position = Vector2.MoveTowards(transform.position, avalancheTarget, Time.deltaTime * avalancheSpeed);
+       
 
         if(playerScript.isCoroutineRunning == true)
         {

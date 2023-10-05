@@ -68,7 +68,7 @@ public class PlayerMovement : MonoBehaviour
         if (time >= timeDelay)
         {
 
-            //rB.velocity = new Vector2(runningSpeed, rB.velocity.y);
+            rB.velocity = new Vector2(runningSpeed, rB.velocity.y);
 
 
             horizontal = Input.GetAxis("Horizontal");
@@ -145,7 +145,7 @@ public class PlayerMovement : MonoBehaviour
 
         else if (collision.gameObject.CompareTag("Slowdown"))
         {
-            runningSpeed = 7f;
+            runningSpeed = 10f;
             inSlowdown = true;
         }
     }
