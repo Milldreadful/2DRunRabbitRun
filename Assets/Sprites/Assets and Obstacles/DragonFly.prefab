@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8213077295889208568}
   m_Layer: 6
   m_Name: DragonFly
-  m_TagString: Obstacle
+  m_TagString: Dragonfly
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

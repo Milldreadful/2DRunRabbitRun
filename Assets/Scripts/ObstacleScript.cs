@@ -15,17 +15,15 @@ public class ObstacleScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       if(playerScript.isCoroutineRunning == true)
-        {
-            GetComponent<Collider2D>().enabled = true;
-        }
+       
+       
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if(collision.gameObject.name == "Rhino")
         {
-            GetComponent<Collider2D>().enabled = false;
+            Physics2D.IgnoreCollision(collision.gameObject.GetComponent<Collider2D>(), GetComponent<Collider2D>());
         }
     }
 }

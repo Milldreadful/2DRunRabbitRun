@@ -8,6 +8,9 @@ public class TreasureScript : MonoBehaviour
 {
     public Transform catchPosition;
     public GameObject parentObject;
+    public AudioClip babyBounce;
+    public AudioClip catchTreasure;
+    public AudioSource myAudio;
 
     public float treasureX;
     public float treasureY;
@@ -28,6 +31,7 @@ public class TreasureScript : MonoBehaviour
         bounceCount = 0;
         onAirTimer = 0;
 
+        myAudio = GetComponent<AudioSource>();
         treasureRB = GetComponent<Rigidbody2D>();
         playerScript = GameObject.Find("Player").GetComponent<PlayerMovement>();
     }
@@ -63,6 +67,7 @@ public class TreasureScript : MonoBehaviour
     {
         if (collision.CompareTag("Hands") && treasureRB.velocity.y < -0.1f)
         {
+            myAudio.PlayOneShot(catchTreasure);
             treasureRB.simulated = false;
             transform.position = catchPosition.position;
             gameObject.transform.parent = parentObject.transform;
@@ -75,6 +80,7 @@ public class TreasureScript : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Ground"))
         {
+            myAudio.PlayOneShot(babyBounce);
             bounceCount += 1;
             treasureRB.velocity = new Vector2(treasureX, treasureY);
 

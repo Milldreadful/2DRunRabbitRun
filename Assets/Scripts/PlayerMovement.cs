@@ -33,11 +33,17 @@ public class PlayerMovement : MonoBehaviour
 
     public AudioSource jumpSFX;
     public Animator playerAnim;
+    public AudioSource rocketSFX;
+    public Animator checkPoint;
+    public AudioClip stepSFX;
+    public AudioSource mystepAudio;
 
     public float time = 0f;
     public float timeDelay = 2f;
 
     public GameManager GMScript;
+
+   
 
 
 
@@ -47,8 +53,14 @@ public class PlayerMovement : MonoBehaviour
         rB = GetComponent<Rigidbody2D>();
         GMScript = GameObject.Find("GM").GetComponent<GameManager>();
         checkpointPosition = transform.position;
+        rocketSFX = GameObject.Find("Checkpoint").GetComponent<AudioSource>();
+        
     }
 
+    public void StepSound()
+    {
+        mystepAudio.PlayOneShot(stepSFX);
+    }
 
     // Update is called once per frame
     void Update()
@@ -115,9 +127,11 @@ public class PlayerMovement : MonoBehaviour
 
     public IEnumerator ReSpawn()
     {
+        checkPoint.SetTrigger("reset");
         yield return new WaitForSeconds(1f);
         isCoroutineRunning = true;
-        transform.position = checkpointPosition;
+        transform.position = new Vector2(checkpointPosition.x-2, checkpointPosition.y);
+        checkPoint.SetTrigger("contact");
         treasure.transform.position = catchPosition.position;
         yield return new WaitForSeconds(1f);
         isCoroutineRunning = false;
@@ -140,6 +154,9 @@ public class PlayerMovement : MonoBehaviour
 
         else if (collision.gameObject.CompareTag("Checkpoint"))
         {
+            checkPoint.SetTrigger("contact");
+            
+            rocketSFX.Play();
             checkpointPosition = transform.position;
         }
 
@@ -148,6 +165,8 @@ public class PlayerMovement : MonoBehaviour
             runningSpeed = 10f;
             inSlowdown = true;
         }
+
+       
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -156,6 +175,13 @@ public class PlayerMovement : MonoBehaviour
         {
             runningSpeed = 12f;
             inSlowdown = false;
+        }
+    }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Dragonfly"))
+        {
+            collision.gameObject.GetComponent<Animator>().SetTrigger("squash");
         }
     }
 }
