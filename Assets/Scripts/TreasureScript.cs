@@ -70,7 +70,7 @@ public class TreasureScript : MonoBehaviour
             bounceCount = 0;
         }
 
-        if (collision.gameObject.CompareTag("Hole"))
+        if (collision.gameObject.CompareTag("Hole") && !isInHand)
         {
             playerScript.StartCoroutine("ReSpawn");
         }

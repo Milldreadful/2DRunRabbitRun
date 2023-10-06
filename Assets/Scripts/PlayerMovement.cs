@@ -137,6 +137,7 @@ public class PlayerMovement : MonoBehaviour
 
     public IEnumerator ReSpawn()
     {
+        print("APUA");
         checkPoint.SetTrigger("reset");
         fadeScreen.SetTrigger("FadeOut");
         runningSpeed = 0f;
@@ -168,8 +169,8 @@ public class PlayerMovement : MonoBehaviour
 
         else if (collision.gameObject.CompareTag("Checkpoint"))
         {
-            checkPoint.SetTrigger("contact");
-            
+            collision.gameObject.GetComponent<Animator>().SetTrigger("contact");
+
             rocketSFX.Play();
             checkpointPosition = transform.position;
         }
