@@ -1957,7 +1957,7 @@ GameObject:
   - component: {fileID: 240979509}
   m_Layer: 0
   m_Name: Goal
-  m_TagString: Goal
+  m_TagString: Goal_Avalanche
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3012,11 +3012,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8783409687576579219, guid: 10ef075ff35970a46acca4477d6b94ac, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5.6
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 8783409687576579219, guid: 10ef075ff35970a46acca4477d6b94ac, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -5.25
+      value: -2.8
       objectReference: {fileID: 0}
     - target: {fileID: 8783409687576579219, guid: 10ef075ff35970a46acca4477d6b94ac, type: 3}
       propertyPath: m_LocalPosition.z
@@ -4187,7 +4187,7 @@ Transform:
   m_GameObject: {fileID: 613960805}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 16.551165, y: -7.780777, z: -10}
+  m_LocalPosition: {x: 16.551165, y: -5.3307786, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4563,7 +4563,7 @@ Transform:
   m_GameObject: {fileID: 673991860}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.0307617, y: -7.780777, z: -10}
+  m_LocalPosition: {x: 15.430762, y: -5.3307767, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4691,7 +4691,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -78, y: 5.8, z: 0}
-  m_LocalScale: {x: 2.6666903, y: 2.6666903, z: 2.6666903}
+  m_LocalScale: {x: 3.8688343, y: 3.8688343, z: 3.8688343}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}

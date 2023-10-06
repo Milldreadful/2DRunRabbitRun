@@ -208,6 +208,12 @@ public class PlayerMovement : MonoBehaviour
             goal.PlayOneShot(goalSFX);
             GMScript.LoadLevel(sceneIndex + 1);
         }
+
+        if (collision.gameObject.CompareTag("Goal_Avalanche"))
+        {
+            goal.PlayOneShot(goalSFX);
+            GMScript.LoadLevel(0);
+        }
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
