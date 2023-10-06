@@ -14,6 +14,7 @@ TagManager:
   - SmallObstacle
   - Goal
   - Hazard
+  - Treasure
   layers:
   - Default
   - TransparentFX

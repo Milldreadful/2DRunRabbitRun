@@ -138,16 +138,20 @@ public class PlayerMovement : MonoBehaviour
     public IEnumerator ReSpawn()
     {
         print("APUA");
-        checkPoint.SetTrigger("reset");
+        //checkPoint.SetTrigger("reset");
         fadeScreen.SetTrigger("FadeOut");
         runningSpeed = 0f;
-        yield return new WaitForSeconds(2f);
         isCoroutineRunning = true;
+
+        yield return new WaitForSeconds(2f);
+        
         transform.position = new Vector2(checkpointPosition.x-2, checkpointPosition.y);
         checkPoint.SetTrigger("contact");
         treasure.transform.position = catchPosition.position;
         fadeScreen.SetTrigger("FadeIn");
+
         yield return new WaitForSeconds(1f);
+
         isCoroutineRunning = false;
         runningSpeed = 12f;
     }
@@ -161,7 +165,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Hole") || collision.gameObject.CompareTag ("Hazard"))
+        if (collision.gameObject.CompareTag ("Hazard"))
         {
             fail.PlayOneShot(failSFX);
             StartCoroutine(ReSpawn());
@@ -181,7 +185,14 @@ public class PlayerMovement : MonoBehaviour
             inSlowdown = true;
         }
 
-       
+        if (collision.gameObject.CompareTag("SmallObstacle"))
+        {
+            fail.PlayOneShot(failSFX);
+            playerAnim.SetTrigger("Fall");
+            StartCoroutine(ReSpawn());
+        }
+
+
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -213,7 +224,7 @@ public class PlayerMovement : MonoBehaviour
             StartCoroutine(ReSpawn());
         }
 
-        if (collision.gameObject.CompareTag("Hazard"))
+        if ((collision.gameObject.CompareTag("Hole") || collision.gameObject.CompareTag("Hazard")))
         {
             fail.PlayOneShot(failSFX);
             StartCoroutine(ReSpawn());
